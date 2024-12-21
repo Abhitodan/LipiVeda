@@ -65,10 +65,10 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
-
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_77571D53C00847BCAC8AB4E3AE2F9940 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_909AC5727983405DBE69B6BB207021C6 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9583E25C5D741608A35F35E019F72CC }}
+          
       - name: Cleanup old deployments
         run: |
           echo "Cleaning up old deployment files in Azure..."
