@@ -68,6 +68,14 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_77571D53C00847BCAC8AB4E3AE2F9940 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_909AC5727983405DBE69B6BB207021C6 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9583E25C5D741608A35F35E019F72CC }}
+      
+      # New Step: Cleanup old deployments (force delete)
+      - name: Cleanup old deployments
+        run: |
+          echo "Deleting existing deployment files in /site/wwwroot..."
+          az webapp delete --name lipiveda \
+                           --resource-group HRAnalysis \
+                           --slot Production || echo "Cleanup step skipped or no previous deployments found"
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
