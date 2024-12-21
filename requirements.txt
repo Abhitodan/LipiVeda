@@ -15,11 +15,11 @@ distro==1.9.0
 fastapi==0.115.6
 Flask==3.0.3
 flatbuffers==24.3.25
-gast==0.4.0  # Compatible with TensorFlow 2.13.1
+gast==0.4.0  # TensorFlow compatibility
 google-pasta==0.2.0
 grpcio==1.56.2
 h11==0.14.0
-h5py==3.9.0
+h5py==3.7.0  # TensorFlow compatibility
 httpcore==1.0.6
 httpx==0.27.2
 idna==3.10
@@ -27,7 +27,7 @@ itsdangerous==2.2.0
 Jinja2==3.1.4
 jiter==0.6.1
 joblib==1.4.2
-keras==2.13.1  # Match TensorFlow version
+keras==2.10.0  # TensorFlow compatibility
 libclang==18.1.1
 Markdown==3.7
 markdown-it-py==3.0.0
@@ -35,17 +35,17 @@ MarkupSafe==3.0.1
 mdurl==0.1.2
 ml-dtypes==0.4.1
 namex==0.0.8
-numpy==1.24.3  # Compatible with TensorFlow 2.13.1
+numpy==1.23.5  # TensorFlow compatibility
 openai==1.51.2
 opencv-python==4.10.0.84
-opt-einsum==3.4.0
+opt-einsum==3.3.0  # TensorFlow compatibility
 optree==0.13.1
 packaging==24.1
 pandas==2.2.3
 pdfminer.six==20231228
 pdfplumber==0.11.4
 pillow==10.4.0
-protobuf==3.20.3  # Compatible with TensorFlow 2.13.1
+protobuf==3.19.0  # TensorFlow compatibility
 pycparser==2.22
 pydantic==2.9.2
 pydantic_core==2.23.4
@@ -59,19 +59,19 @@ pytz==2024.2
 requests==2.32.3
 rich==13.9.4
 scikit-learn==1.6.0
-scipy==1.10.1  # Compatible with TensorFlow 2.13.1
+scipy==1.10.1  # TensorFlow compatibility
 self==2020.12.3
 setuptools==75.6.0
 six==1.17.0
 sniffio==1.3.1
 starlette==0.41.3
-tensorboard==2.13.0  # Match TensorFlow version
-tensorboard-data-server==0.7.2
-tensorflow==2.13.1  # TensorFlow compatibility priority
+tensorboard==2.10.0  # TensorFlow compatibility
+tensorboard-data-server==0.6.1
+tensorflow==2.10.0  # TensorFlow version compatible with all
 termcolor==2.5.0
 threadpoolctl==3.5.0
 tqdm==4.66.5
-typing-extensions==4.5.0  # Downgraded for TensorFlow compatibility
+typing-extensions>=4.7,<5  # Aligned with multiple dependencies
 tzdata==2024.2
 urllib3==2.2.3
 uvicorn==0.33.0
