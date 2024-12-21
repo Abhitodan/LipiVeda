@@ -9,7 +9,6 @@ from typing import Dict, Any, List
 import cv2
 import numpy as np
 import openai
-import self
 import tensorflow as tf
 import uvicorn
 from fastapi import FastAPI, File, UploadFile, HTTPException
@@ -655,17 +654,19 @@ class HandwritingAnalyzer:
 
     def create_analysis_prompt(self, features: Dict[str, Any]) -> str:
         """Create narrative-style prompt for GPT analysis with holistic coaching insights"""
-        return f""" As an expert graphologist, psychologist, and multidisciplinary coach, analyze the following 
-        handwriting and signature features. Provide a comprehensive, engaging, and actionable summary that integrates 
-        **graphology insights** with perspectives from a **health coach, mental coach, career coach, and mentor**.
+        return f"""As an expert graphologist, psychologist, and multidisciplinary coach, analyze the following 
+        handwriting and signature features. Provide a comprehensive, engaging, and actionable analysis that integrates 
+        **graphology insights** with perspectives from a **health coach, mental coach, career coach, and mentor**. The analysis 
+        should reflect the writer's current state and provide guidance for future improvements.
 
-        ### **Objectives of the Analysis**: 1. Use handwriting features to describe the writer's personality, 
-        emotional tendencies, cognitive patterns, and social behavior. 2. Provide tailored recommendations in four 
-        key areas: - **Health and Wellness**: Physical and mental well-being (e.g., stress levels, 
-        energy management). - **Emotional and Mental Coaching**: Resilience, focus, emotional balance, 
-        and stress-handling abilities. - **Career Guidance**: Professional strengths, leadership potential, 
-        creativity, and areas for growth. - **Personal Development and Mentorship**: Communication skills, 
-        relationships, confidence-building, and self-discipline.
+        ### **Objectives of the Analysis**:
+        1. **Profile the writer's personality, cognitive patterns, emotional tendencies, and interpersonal behavior** based on handwriting features.
+        2. **Identify strengths and potential areas for growth** across personal, emotional, and professional dimensions.
+        3. **Provide tailored coaching insights** in four key areas:
+           - **Health and Wellness**: Address physical and mental well-being, including energy levels, stress markers, and habits for improved vitality.
+           - **Emotional and Mental Coaching**: Focus on resilience, emotional balance, mindfulness, and strategies for reducing stress.
+           - **Career Guidance**: Highlight professional strengths, leadership potential, and creativity while offering practical career recommendations.
+           - **Personal Development**: Suggest ways to enhance communication, relationships, confidence, and self-discipline.
 
         ### **Handwriting Features**:
         **Baseline Analysis**:
@@ -708,24 +709,29 @@ class HandwritingAnalyzer:
 
         ### **Guidelines for Analysis**:
         - **Personality Insights**:
-          Describe the writer’s confidence, ambition, creativity, and emotional state.
-        - **Health and Wellness Coaching**:
-          Based on handwriting pressure, slant, and zones, identify energy levels, stress markers, and suggest health habits for physical and mental well-being.
+          - Describe confidence, ambition, creativity, and emotional tendencies.
+          - Use slant, pressure, and zones to assess adaptability, empathy, and assertiveness.
+        - **Health and Wellness**:
+          - Identify energy levels and stress markers from pressure, baseline, and spacing.
+          - Suggest habits like mindfulness, physical activity, or improved sleep patterns to enhance vitality.
         - **Emotional and Mental Coaching**:
-          Provide recommendations on stress-handling strategies, focus, emotional resilience, and mindfulness practices.
-        - **Career Coaching**:
-          Highlight career strengths (e.g., analytical thinking, leadership skills, creativity), suitable roles, and areas for professional growth.
-        - **Mentorship and Development**:
-          Suggest ways to improve communication, build stronger relationships, enhance confidence, and work on self-discipline for personal development.
+          - Provide strategies for resilience, stress management, and focus-building.
+          - Offer personalized advice on emotional balance, conflict resolution, and mindfulness practices.
+        - **Career Guidance**:
+          - Highlight professional strengths like analytical thinking, creativity, or leadership.
+          - Recommend career roles and practical steps for skill enhancement or professional growth.
+        - **Personal Development**:
+          - Suggest ways to improve communication, strengthen relationships, and enhance self-discipline.
+          - Provide confidence-building exercises and mentorship strategies for long-term growth.
 
         ### **Example Output**:
-        "The writer exhibits high confidence and leadership tendencies, shown by their firm baseline and bold signature. However, inconsistent pressure indicates fluctuating energy levels, suggesting a need for better stress management and work-life balance.  
-        From a **health perspective**, incorporating mindfulness practices and physical activity would help stabilize energy.  
-        Their dominant middle zone and medium word spacing show practical thinking and respect for boundaries, making them well-suited for analytical or managerial roles.  
-        As a **career coach**, I recommend exploring leadership positions where decision-making and empathy are valued.  
-        To build resilience and emotional strength, the writer could benefit from guided meditation and personal mentoring focused on emotional intelligence."
+        "The writer displays a strong sense of determination and ambition, evident from their upward baseline and consistent pressure. However, slight irregularities in word spacing suggest moments of doubt or hesitation, indicating room for emotional resilience.
 
-        Write the analysis in a professional, conversational tone, delivering actionable advice that the user can implement in their life. Focus on clarity, empathy, and relevance to their goals.
+        From a **health perspective**, moderate pressure and a slightly slanted baseline point to occasional stress. Incorporating mindfulness techniques and regular exercise could stabilize their energy levels.
+
+        Professionally, the writer's dominant middle zone and balanced slant highlight their practical thinking and ability to collaborate effectively, making them suitable for team leadership or analytical roles. Exploring fields where decision-making and interpersonal skills are valued would bring fulfillment.
+
+        For **personal growth**, fostering self-discipline and working on assertive communication could enhance relationships and build confidence. Setting small, achievable goals and celebrating milestones would reinforce their progress."
         """
 
     def save_result(self, result: Dict[str, Any]) -> None:
