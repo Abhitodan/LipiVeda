@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Ensure system dependencies are installed
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-distutils python3-dev build-essential
+
       - name: Create and start virtual environment
         run: |
           python3 -m venv venv
@@ -25,10 +30,9 @@ jobs:
 
       - name: Upgrade pip and install essential tools
         run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install setuptools wheel
+          python3 -m pip install --upgrade pip setuptools wheel
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           source venv/bin/activate
           pip install -r requirements.txt
