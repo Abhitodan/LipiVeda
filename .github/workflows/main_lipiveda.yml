@@ -30,6 +30,7 @@ jobs:
 
       - name: Upgrade pip and install essential build tools
         run: |
+          python3 -m ensurepip --upgrade
           python3 -m pip install --upgrade pip setuptools wheel
 
       - name: Install Python dependencies
