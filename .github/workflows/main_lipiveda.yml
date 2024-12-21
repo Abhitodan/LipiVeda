@@ -69,12 +69,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_909AC5727983405DBE69B6BB207021C6 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9583E25C5D741608A35F35E019F72CC }}
 
-      - name: Install dependencies on Azure Web App
+      - name: Ensure pip and install dependencies
         run: |
-          echo "Upgrading pip and installing required dependencies..."
-          python3 -m ensurepip --upgrade
+          echo "Ensuring pip is installed and upgrading..."
+          sudo apt-get update
+          sudo apt-get install -y python3-pip python3-venv python3-distutils build-essential
           python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install --upgrade distlib
           pip install -r requirements.txt
 
       - name: Cleanup old deployments
@@ -92,3 +92,4 @@ jobs:
           app-name: 'lipiveda'
           slot-name: 'Production'
           package: './release.zip'
+
