@@ -69,6 +69,14 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
 
+      - name: Cleanup old deployments
+        run: |
+          echo "Cleaning up old deployment files in Azure..."
+          az webapp delete \
+            --name lipiveda \
+            --resource-group HRAnalysis \
+            --slot Production || echo "No previous deployment files found."
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
