@@ -31,10 +31,17 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'  # Adjust Python version as needed
+
+      - name: Install Required System Packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-distutils python3-dev build-essential
+          
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          python -m ensurepip --upgrade
+          python -m pip install --upgrade setuptools
+          pip install -r requirements.txt
 
       # Step 3: Set up Node.js (required for frontend or build scripts)
       - name: Set up Node.js
